@@ -1,17 +1,21 @@
 package com.ruhuna.project.supermarketcore.service.requestmodel;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+
+import static com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 /**
  * Created By Supun Kavinda
  * Email naskavinda@gmail.com
  * Date  : 9/3/2018
  */
-@Builder
+//@Builder
 @Getter
-public class UsersModel {
+@Setter
+public class UserModel {
     private int id;
 
     private String firstName;
@@ -20,6 +24,6 @@ public class UsersModel {
 
     private String userName;
 
-    private Boolean status;
-
+    @JsonProperty(access = Access.WRITE_ONLY)
+    private String password;
 }

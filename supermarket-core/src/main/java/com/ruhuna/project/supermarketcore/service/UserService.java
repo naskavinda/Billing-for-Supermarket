@@ -1,6 +1,6 @@
 package com.ruhuna.project.supermarketcore.service;
 
-import com.ruhuna.project.supermarketcore.service.requestmodel.UsersModel;
+import com.ruhuna.project.supermarketcore.service.requestmodel.UserModel;
 
 import java.util.List;
 
@@ -11,5 +11,9 @@ import java.util.List;
  */
 public interface UserService {
 
-    List<UsersModel> getAllUsers();
+    List<UserModel> getAllUsers();
+
+    UserModel getUserById(int id);
+
+    UserModel saveOrUpdateUser(UserModel userModel, String password);
 }

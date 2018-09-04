@@ -1,11 +1,12 @@
 package com.ruhuna.project.supermarketcore.service.impl;
 
+import com.ruhuna.project.supermarketcore.manager.model.Users;
 import com.ruhuna.project.supermarketcore.service.UserService;
+import com.ruhuna.project.supermarketcore.service.requestmodel.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.ruhuna.project.supermarketcore.repository.UsersRepository;
-import com.ruhuna.project.supermarketcore.service.requestmodel.UsersModel;
 import com.ruhuna.project.supermarketcore.service.util.UsersModelMapper;
 
 import java.util.List;
@@ -28,7 +29,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UsersModel> getAllUsers() {
-        return usersRepository.findAll().stream().map(UsersModelMapper::UserToUserModel).collect(Collectors.toList());
+    public List<UserModel> getAllUsers() {
+        return usersRepository.findAll().stream().map(UsersModelMapper::userToUserModel).collect(Collectors.toList());
+    }
+
+    @Override
+    public UserModel getUserById(int id) {
+        Users user = usersRepository.findUsersById(id);
+        return user == null ? null : UsersModelMapper.userToUserModel(user);
+    }
+
+    @Override
+    public UserModel saveOrUpdateUser(UserModel userModel, String password) {
+        Users user = usersRepository.saveAndFlush(UsersModelMapper.userModelToUser(userModel,password));
+        return user == null ? null : UsersModelMapper.userToUserModel(user);
     }
 }
