@@ -1,4 +1,4 @@
-package manager.model;
+package com.ruhuna.project.supermarketcore.manager.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,22 +20,16 @@ public class ItemLocation {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "item_location_id_seq")
     private int id;
 
-    @Column(name = "x_coordinate")
     private double xCoordinate;
 
-    @Column(name = "y_coordinate")
     private double yCoordinate;
 
-    @Column(name = "rack_no")
     private double rackNo;
 
-    @Column(name = "rack_sub_no")
     private double rackSubNo;
 
-    @Column(name = "rack_side")
     private double rackSide;
 
-    @Column(name = "status")
     private boolean status;
 
     @ManyToOne(fetch = FetchType.LAZY)

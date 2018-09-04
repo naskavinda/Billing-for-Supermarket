@@ -1,4 +1,4 @@
-package manager.model;
+package com.ruhuna.project.supermarketcore.manager.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,25 +21,18 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "payment_id_seq")
     private int id;
 
-    @Column(name = "paid_amount")
     private BigDecimal paidAmount;
 
-    @Column(name = "gross_amount")
     private BigDecimal grossAmount;
 
-    @Column(name = "discount")
     private BigDecimal discount;
 
-    @Column(name = "is_discount_rate")
     private boolean isDiscountRate;
 
-    @Column(name = "net_amount")
     private BigDecimal netAmount;
 
-    @Column(name = "balance")
     private BigDecimal balance;
 
-    @Column(name = "status")
     private boolean status;
 
     @ManyToOne(fetch = FetchType.LAZY)

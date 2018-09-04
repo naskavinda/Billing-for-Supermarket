@@ -1,9 +1,10 @@
-package manager.model;
+package com.ruhuna.project.supermarketcore.manager.model;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created By Supun Kavinda
@@ -21,9 +22,10 @@ public class PaymentType {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "payment_type_id_seq")
     private int id;
 
-    @Column(name = "type")
+    @NotNull
     private String type;
 
-    @Column(name = "status")
+    @NotNull
+    @Column( columnDefinition = "INT default 1" )
     private boolean status;
 }

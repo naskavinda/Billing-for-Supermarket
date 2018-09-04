@@ -1,4 +1,4 @@
-package manager.model;
+package com.ruhuna.project.supermarketcore.manager.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -16,6 +16,12 @@ public class Users {
     @SequenceGenerator(name = "users_id_seq", sequenceName = "users_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "users_id_seq")
     private int id;
+
+    @NotNull
+    private String firstName;
+
+    @NotNull
+    private String lastName;
 
     @NotNull
     @ApiModelProperty(notes = "Users Name", required = true)

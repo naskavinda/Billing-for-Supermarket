@@ -1,4 +1,4 @@
-package manager.model;
+package com.ruhuna.project.supermarketcore.manager.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModelProperty;

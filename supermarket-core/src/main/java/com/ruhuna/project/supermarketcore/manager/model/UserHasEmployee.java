@@ -1,9 +1,10 @@
-package manager.model;
+package com.ruhuna.project.supermarketcore.manager.model;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+
 
 /**
  * Created By Supun Kavinda
@@ -13,11 +14,11 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "user_has_customer")
-public class UserHasCustomer {
+@Table(name = "user_has_employee")
+public class UserHasEmployee {
     @Id
-    @SequenceGenerator(name = "user_has_customer_id_seq", sequenceName = "user_has_customer_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "user_has_customer_id_seq")
+    @SequenceGenerator(name = "user_has_employee_id_seq", sequenceName = "user_has_employee_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "user_has_employee_id_seq")
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -26,8 +27,7 @@ public class UserHasCustomer {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id", nullable = false)
-    private Customer customer;
+    private Employee employee;
 
-    @Column(name = "status")
     private boolean status;
 }

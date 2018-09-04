@@ -1,4 +1,4 @@
-package manager.model;
+package com.ruhuna.project.supermarketcore.manager.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModelProperty;
@@ -51,17 +51,17 @@ public class Item {
     @Column(columnDefinition = "BOOLEAN default TRUE")
     private Boolean status;
 
-    @ElementCollection(targetClass = Pack.class)
+//    @ElementCollection(targetClass = Pack.class)
 //    @JoinTable(name = "tblShopTypes", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "shopType", nullable = false)
+//    @Column(name = "pack", nullable = false)
     @Enumerated(EnumType.STRING)
     private Pack pack;
 
-    @ElementCollection(targetClass = Unit.class)
+//    @ElementCollection(targetClass = Unit.class)
 //    @JoinTable(name = "tblShopTypes", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "shopType", nullable = false)
+//    @Column(name = "pack", nullable = false)
     @Enumerated(EnumType.STRING)
-    private Unit Unit;
+    private Unit unit;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)

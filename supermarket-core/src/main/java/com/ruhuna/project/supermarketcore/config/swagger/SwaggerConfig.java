@@ -1,4 +1,4 @@
-package config.swagger;
+package com.ruhuna.project.supermarketcore.config.swagger;
 
 import com.google.common.base.Predicate;
 import org.springframework.context.annotation.Bean;
@@ -24,9 +24,9 @@ public class SwaggerConfig {
     @Bean
     public Docket postsApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("greenleaf-api")
+                .groupName("supermarket-api")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.beepatterns.greenleaf.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.ruhuna.project.supermarketcore.controller"))
                 .paths(postPaths())
                 .build()
                 .apiInfo(apiInfo());
@@ -34,17 +34,14 @@ public class SwaggerConfig {
 
     private Predicate<String> postPaths() {
         //return or(regex("/.*"));
-        return or(regex("/user.*"),
-                regex("/property.*"),
-                regex("/bought_leaf.*"),
-                regex("/supplier.*"));
+        return or(regex("/user.*"));
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Greenleaf rest API")
-                .description("Spring boot rest api for greenleaf")
-                .termsOfServiceUrl("http://beepatterns.lk")
+                .title("SuperMarket rest API")
+                .description("Spring boot rest api for supermarket")
+//                .termsOfServiceUrl("http://beepatterns.lk")
                 .contact(contact())
                 //.license("beepatterns License")
                 //.licenseUrl("naskavinda@gmail.com")
