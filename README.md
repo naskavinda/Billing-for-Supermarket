@@ -3,7 +3,7 @@ note : This application still in under construction
 
 This is the software part of the my final year project call "Shopping Assistant Trolley with Automatic Billing for Super Market"
 
-##Instruction for run this project 
+## Instruction for run this project 
 
 After clone this project first thing is you should config MySQL properties.
 * Open the `application.properties` file It is in the resources folder. 
