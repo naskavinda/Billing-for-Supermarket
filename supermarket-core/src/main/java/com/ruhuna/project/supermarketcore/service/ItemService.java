@@ -1,5 +1,6 @@
 package com.ruhuna.project.supermarketcore.service;
 
+import com.ruhuna.project.supermarketcore.controller.dto.CartDTO;
 import com.ruhuna.project.supermarketcore.controller.dto.ItemDTO;
 import com.ruhuna.project.supermarketcore.controller.dto.ItemSubTypeDTO;
 import com.ruhuna.project.supermarketcore.entity.ItemMainType;
@@ -30,4 +31,10 @@ public interface ItemService {
     ItemDTO getItemById(int id);
 
     ItemDTO saveItem(ItemDTO itemDTO);
+
+    CartDTO getItemInCartById(int id);
+
+    CartDTO addToCart(CartDTO cartDTO);
+
+    List<CartDTO> getAllItemsInCart();
 }

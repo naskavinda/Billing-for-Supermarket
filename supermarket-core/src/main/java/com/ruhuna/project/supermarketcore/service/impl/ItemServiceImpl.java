@@ -1,14 +1,15 @@
 package com.ruhuna.project.supermarketcore.service.impl;
 
+import com.ruhuna.project.supermarketcore.controller.dto.CartDTO;
 import com.ruhuna.project.supermarketcore.controller.dto.ItemDTO;
 import com.ruhuna.project.supermarketcore.controller.dto.ItemSubTypeDTO;
-import com.ruhuna.project.supermarketcore.entity.Item;
-import com.ruhuna.project.supermarketcore.entity.ItemMainType;
-import com.ruhuna.project.supermarketcore.entity.ItemSubType;
+import com.ruhuna.project.supermarketcore.entity.*;
 import com.ruhuna.project.supermarketcore.exception.InvalidPropertyException;
+import com.ruhuna.project.supermarketcore.repository.CartRepository;
 import com.ruhuna.project.supermarketcore.repository.ItemMainTypeRepository;
 import com.ruhuna.project.supermarketcore.repository.ItemRepository;
 import com.ruhuna.project.supermarketcore.repository.ItemSubTypeRepository;
+import com.ruhuna.project.supermarketcore.service.CustomerService;
 import com.ruhuna.project.supermarketcore.service.ItemService;
 import com.ruhuna.project.supermarketcore.service.util.ItemModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +32,17 @@ public class ItemServiceImpl implements ItemService {
     private final ItemMainTypeRepository itemMainTypeRepository;
     private final ItemSubTypeRepository itemSubTypeRepository;
     private final ItemRepository itemRepository;
+    private final CartRepository cartRepository;
+
+    private final CustomerService customerService;
 
     @Autowired
-    public ItemServiceImpl(ItemMainTypeRepository itemMainTypeRepository, ItemSubTypeRepository itemSubTypeRepository, ItemRepository itemRepository) {
+    public ItemServiceImpl(ItemMainTypeRepository itemMainTypeRepository, ItemSubTypeRepository itemSubTypeRepository, ItemRepository itemRepository, CartRepository cartRepository, CustomerService customerService) {
         this.itemMainTypeRepository = itemMainTypeRepository;
         this.itemSubTypeRepository = itemSubTypeRepository;
         this.itemRepository = itemRepository;
+        this.cartRepository = cartRepository;
+        this.customerService = customerService;
     }
 
     @Override
@@ -48,7 +54,7 @@ public class ItemServiceImpl implements ItemService {
     public ItemMainType getItemMainTypeById(int id) {
         Optional<ItemMainType> itemMainType = itemMainTypeRepository.findById(id);
         if (!itemMainType.isPresent())
-            throw new InvalidPropertyException("You provided Item Main Type ID is not exist.");
+            throw new InvalidPropertyException("provided Item Main Type ID is not exist.");
         return itemMainType.get();
     }
 
@@ -67,7 +73,7 @@ public class ItemServiceImpl implements ItemService {
     public ItemSubType getItemSubTypeById(int id) {
         Optional<ItemSubType> itemSubType = itemSubTypeRepository.findById(id);
         if (!itemSubType.isPresent())
-            throw new InvalidPropertyException("You provided Item Sub Type ID is not exist.");
+            throw new InvalidPropertyException("provided Item Sub Type ID is not exist.");
         return itemSubType.get();
     }
 
@@ -87,10 +93,14 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ItemDTO getItemById(int id) {
+        return ItemModelMapper.itemToItemDAO(findItemById(id));
+    }
+
+    private Item findItemById(int id) {
         Optional<Item> item = itemRepository.findById(id);
         if (!item.isPresent())
-            throw new InvalidPropertyException("You provided Item ID is not exist.");
-        return ItemModelMapper.itemToItemDAO(item.get());
+            throw new InvalidPropertyException("provided Item ID is not exist.");
+        return item.get();
     }
 
     @Override
@@ -99,5 +109,25 @@ public class ItemServiceImpl implements ItemService {
 
         Item item = ItemModelMapper.itemDTOToItem(itemDTO, itemSubType, true);
         return ItemModelMapper.itemToItemDAO(itemRepository.save(item));
+    }
+
+    @Override
+    public CartDTO getItemInCartById(int id) {
+        Optional<Cart> cart = cartRepository.findById(id);
+        if (!cart.isPresent())
+            throw new InvalidPropertyException("provided Item ID is not exist.");
+        return ItemModelMapper.cartToCartDTO(cart.get());
+    }
+
+    @Override
+    public CartDTO addToCart(CartDTO cartDTO) {
+        Item item = findItemById(cartDTO.getItemId());
+        Customer customer = customerService.getCustomerById(cartDTO.getCustomerId());
+        return ItemModelMapper.cartToCartDTO(cartRepository.save(ItemModelMapper.cartDTOToCart(cartDTO, customer, item, true)));
+    }
+
+    @Override
+    public List<CartDTO> getAllItemsInCart() {
+        return cartRepository.findCartsByStatusIsTrue().stream().map(ItemModelMapper::cartToCartDTO).collect(Collectors.toList());
     }
 }

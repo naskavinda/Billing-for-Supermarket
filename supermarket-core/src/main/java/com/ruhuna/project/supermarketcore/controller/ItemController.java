@@ -1,5 +1,6 @@
 package com.ruhuna.project.supermarketcore.controller;
 
+import com.ruhuna.project.supermarketcore.controller.dto.CartDTO;
 import com.ruhuna.project.supermarketcore.controller.dto.ItemDTO;
 import com.ruhuna.project.supermarketcore.controller.dto.ItemSubTypeDTO;
 import com.ruhuna.project.supermarketcore.entity.ItemMainType;
@@ -105,6 +106,26 @@ public class ItemController {
         return new ResponseEntity<>(itemDTOResponse, HttpStatus.CREATED);
     }
 
+    @GetMapping(value = "item/cart_list")
+    @ApiOperation(value = "Get all Item In Cart", response = CartDTO.class, responseContainer = "List")
+    public ResponseEntity<List<CartDTO>> getAllItemsInCart() {
+        List<CartDTO> allItemInCart = itemService.getAllItemsInCart();
+        if (allItemInCart.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(allItemInCart, HttpStatus.OK);
+    }
 
+    @GetMapping(value = "item/cart/{id}")
+    @ApiOperation(value = "Get Existing item in the cart", response = CartDTO.class)
+    public ResponseEntity<CartDTO> getItemInCartById(@PathVariable int id){
+        return new ResponseEntity<>(itemService.getItemInCartById(id), HttpStatus.OK);
+    }
+
+    @PostMapping( value = "item/add_to_cart/" )
+    @ApiOperation( value = "Add Item to the cart", response = CartDTO.class )
+    public ResponseEntity<CartDTO> addToCart(@RequestBody CartDTO cartDTO) {
+        CartDTO cartDTOResponse = itemService.addToCart(cartDTO);
+        return new ResponseEntity<>(cartDTOResponse, HttpStatus.CREATED);
+    }
 
 }

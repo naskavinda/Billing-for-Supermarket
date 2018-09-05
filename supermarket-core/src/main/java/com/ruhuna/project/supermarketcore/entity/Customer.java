@@ -17,19 +17,19 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "customer_id_seq")
     private int id;
 
-    @NotNull( message = "First Name Can't be Null" )
-    @ApiModelProperty( notes = "First Name", required = true )
+    @NotNull(message = "First Name Can't be Null")
+    @ApiModelProperty(notes = "First Name", required = true)
     private String firstName;
 
-    @ApiModelProperty( notes = "Last Name" )
+    @ApiModelProperty(notes = "Last Name")
     private String lastName;
 
     @NotNull(message = "Telephone Number Can't be null")
-    @ApiModelProperty( notes = "Telephone Number", required = true )
+    @ApiModelProperty(notes = "Telephone Number", required = true)
     private String tp;
 
-    @ApiModelProperty( notes = "Status", required = true )
-    @Column( columnDefinition = "BOOLEAN default TRUE" )
+    @ApiModelProperty(notes = "Status", required = true)
+    @Column(columnDefinition = "BOOLEAN default TRUE")
     private Boolean status;
 
 }

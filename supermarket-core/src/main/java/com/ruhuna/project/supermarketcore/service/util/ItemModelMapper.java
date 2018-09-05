@@ -1,10 +1,9 @@
 package com.ruhuna.project.supermarketcore.service.util;
 
+import com.ruhuna.project.supermarketcore.controller.dto.CartDTO;
 import com.ruhuna.project.supermarketcore.controller.dto.ItemDTO;
 import com.ruhuna.project.supermarketcore.controller.dto.ItemSubTypeDTO;
-import com.ruhuna.project.supermarketcore.entity.Item;
-import com.ruhuna.project.supermarketcore.entity.ItemMainType;
-import com.ruhuna.project.supermarketcore.entity.ItemSubType;
+import com.ruhuna.project.supermarketcore.entity.*;
 
 /**
  * Created By Supun Kavinda
@@ -65,5 +64,26 @@ public final class ItemModelMapper {
         itemDTO.setPrice(item.getPrice());
         itemDTO.setUnit(item.getUnit());
         return itemDTO;
+    }
+
+    public static Cart cartDTOToCart(CartDTO cartDTO, Customer customer, Item item, boolean status) {
+        Cart cart = new Cart();
+        cart.setCustomer(customer);
+        cart.setId(cartDTO.getId());
+        cart.setItem(item);
+        cart.setItemAddDate(cartDTO.getAddDate());
+        cart.setQty(cartDTO.getQty());
+        cart.setStatus(status);
+        return cart;
+    }
+
+    public static CartDTO cartToCartDTO(Cart cart) {
+        CartDTO cartDTO = new CartDTO();
+        cartDTO.setAddDate(cart.getItemAddDate());
+        cartDTO.setCustomerId(cart.getCustomer().getId());
+        cartDTO.setId(cart.getId());
+        cartDTO.setItemId(cart.getItem().getId());
+        cartDTO.setQty(cart.getQty());
+        return cartDTO;
     }
 }
