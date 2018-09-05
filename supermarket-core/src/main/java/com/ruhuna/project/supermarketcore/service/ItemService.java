@@ -1,11 +1,11 @@
 package com.ruhuna.project.supermarketcore.service;
 
+import com.ruhuna.project.supermarketcore.controller.dto.ItemDTO;
+import com.ruhuna.project.supermarketcore.controller.dto.ItemSubTypeDTO;
 import com.ruhuna.project.supermarketcore.entity.ItemMainType;
 import com.ruhuna.project.supermarketcore.entity.ItemSubType;
-import com.ruhuna.project.supermarketcore.controller.dto.ItemSubTypeDTO;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created By Supun Kavinda
@@ -15,13 +15,19 @@ import java.util.Optional;
 public interface ItemService {
     List<ItemMainType> getAllItemMainType();
 
-    Optional<ItemMainType> getItemMainTypeById(int id);
+    ItemMainType getItemMainTypeById(int id);
 
     ItemMainType saveItemMainType(ItemMainType itemMainType);
 
     List<ItemSubType> getAllItemSubType();
 
-    Optional<ItemSubType> getItemSubTypeById(int id);
+    ItemSubType getItemSubTypeById(int id);
 
     ItemSubTypeDTO saveItemSubType(ItemSubTypeDTO itemSubTypeDTO);
+
+    List<ItemDTO> getAllItem();
+
+    ItemDTO getItemById(int id);
+
+    ItemDTO saveItem(ItemDTO itemDTO);
 }

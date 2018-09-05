@@ -1,9 +1,10 @@
 package com.ruhuna.project.supermarketcore.controller;
 
+import com.ruhuna.project.supermarketcore.controller.dto.ItemDTO;
+import com.ruhuna.project.supermarketcore.controller.dto.ItemSubTypeDTO;
 import com.ruhuna.project.supermarketcore.entity.ItemMainType;
 import com.ruhuna.project.supermarketcore.entity.ItemSubType;
 import com.ruhuna.project.supermarketcore.service.ItemService;
-import com.ruhuna.project.supermarketcore.controller.dto.ItemSubTypeDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,9 +48,7 @@ public class ItemController {
     @GetMapping(value = "item_main_type/{id}")
     @ApiOperation(value = "Get Item Main Type By ID", response = ItemMainType.class)
     public ResponseEntity<ItemMainType> getItemMainTypeById(@PathVariable int id) {
-        return itemService.getItemMainTypeById(id)
-                .map(itemMainType -> new ResponseEntity<>(itemMainType, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NO_CONTENT));
+        return new ResponseEntity<>(itemService.getItemMainTypeById(id), HttpStatus.OK);
     }
 
     @PostMapping(value = "item_main_type/")
@@ -72,9 +71,7 @@ public class ItemController {
     @GetMapping(value = "item_sub_type/{id}")
     @ApiOperation(value = "Get Item Sub Type By ID", response = ItemSubType.class)
     public ResponseEntity<ItemSubType> getItemSubTypeById(@PathVariable int id) {
-        return itemService.getItemSubTypeById(id)
-                .map(itemSubType -> new ResponseEntity<>(itemSubType, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NO_CONTENT));
+        return  new ResponseEntity<>(itemService.getItemSubTypeById(id), HttpStatus.OK);
     }
 
     @PostMapping(value = "item_sub_type/")
@@ -83,6 +80,31 @@ public class ItemController {
         ItemSubTypeDTO itemSubTypeDTOResponse = itemService.saveItemSubType(itemSubTypeDTO);
         return new ResponseEntity<>(itemSubTypeDTOResponse, HttpStatus.CREATED);
     }
+
+
+    @GetMapping(value = "item/")
+    @ApiOperation(value = "Get all Item", response = ItemDTO.class, responseContainer = "List")
+    public ResponseEntity<List<ItemDTO>> getAllItems() {
+        List<ItemDTO> allItem = itemService.getAllItem();
+        if (allItem.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(allItem, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "item/{id}")
+    @ApiOperation(value = "Get Item By ID", response = ItemDTO.class)
+    public ResponseEntity<ItemDTO> getItemById(@PathVariable int id) {
+        return  new ResponseEntity<>(itemService.getItemById(id), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "item/")
+    @ApiOperation(value = "Save Item details", response = ItemDTO.class)
+    public ResponseEntity<ItemDTO> saveItem(@RequestBody ItemDTO itemDTO) {
+        ItemDTO itemDTOResponse = itemService.saveItem(itemDTO);
+        return new ResponseEntity<>(itemDTOResponse, HttpStatus.CREATED);
+    }
+
 
 
 }

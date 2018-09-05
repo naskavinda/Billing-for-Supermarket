@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -15,7 +16,7 @@ import java.util.Date;
 @Setter
 @Entity
 @Table(name = "item")
-public class Item {
+public class Item implements Serializable {
 
     @Id
     @SequenceGenerator(name = "item_id_seq", sequenceName = "item_id_seq", allocationSize = 1)
@@ -34,14 +35,14 @@ public class Item {
     private String itemCode;
 
     @ApiModelProperty(notes = "Item Unit Size", required = true)
-    private Double itemUnitsize;
+    private Double itemUnitSize;
 
     @ApiModelProperty(notes = "Item Barcode", required = true)
-    private String Barcode;
+    private String barcode;
 
     @Temporal(TemporalType.DATE)
     @ApiModelProperty(notes = "Expiry date", required = true)
-    private Date ExpDate;
+    private Date expDate;
 
     @ApiModelProperty(notes = "Description", required = true)
     @Length(max = 3000)
