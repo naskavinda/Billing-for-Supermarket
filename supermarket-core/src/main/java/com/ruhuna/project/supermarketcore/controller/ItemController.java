@@ -3,7 +3,7 @@ package com.ruhuna.project.supermarketcore.controller;
 import com.ruhuna.project.supermarketcore.entity.ItemMainType;
 import com.ruhuna.project.supermarketcore.entity.ItemSubType;
 import com.ruhuna.project.supermarketcore.service.ItemService;
-import com.ruhuna.project.supermarketcore.service.dto.ItemSubTypeDTO;
+import com.ruhuna.project.supermarketcore.controller.dto.ItemSubTypeDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,4 +83,6 @@ public class ItemController {
         ItemSubTypeDTO itemSubTypeDTOResponse = itemService.saveItemSubType(itemSubTypeDTO);
         return new ResponseEntity<>(itemSubTypeDTOResponse, HttpStatus.CREATED);
     }
+
+
 }

@@ -2,7 +2,7 @@ package com.ruhuna.project.supermarketcore.service;
 
 import com.ruhuna.project.supermarketcore.entity.ItemMainType;
 import com.ruhuna.project.supermarketcore.entity.ItemSubType;
-import com.ruhuna.project.supermarketcore.service.dto.ItemSubTypeDTO;
+import com.ruhuna.project.supermarketcore.controller.dto.ItemSubTypeDTO;
 
 import java.util.List;
 import java.util.Optional;

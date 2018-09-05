@@ -1,6 +1,6 @@
 package com.ruhuna.project.supermarketcore.service;
 
-import com.ruhuna.project.supermarketcore.service.dto.UserDTO;
+import com.ruhuna.project.supermarketcore.controller.dto.UserDTO;
 
 import java.util.List;
 

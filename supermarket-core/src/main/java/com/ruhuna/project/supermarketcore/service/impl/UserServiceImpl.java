@@ -2,7 +2,7 @@ package com.ruhuna.project.supermarketcore.service.impl;
 
 import com.ruhuna.project.supermarketcore.entity.Users;
 import com.ruhuna.project.supermarketcore.service.UserService;
-import com.ruhuna.project.supermarketcore.service.dto.UserDTO;
+import com.ruhuna.project.supermarketcore.controller.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

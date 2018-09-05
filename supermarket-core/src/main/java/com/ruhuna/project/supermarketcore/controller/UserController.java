@@ -1,7 +1,7 @@
 package com.ruhuna.project.supermarketcore.controller;
 
 import com.ruhuna.project.supermarketcore.service.UserService;
-import com.ruhuna.project.supermarketcore.service.dto.UserDTO;
+import com.ruhuna.project.supermarketcore.controller.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import io.swagger.annotations.Api;

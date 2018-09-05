@@ -1,4 +1,4 @@
-package com.ruhuna.project.supermarketcore.service.dto;
+package com.ruhuna.project.supermarketcore.controller.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

@@ -1,7 +1,7 @@
 package com.ruhuna.project.supermarketcore.service.util;
 
 import com.ruhuna.project.supermarketcore.entity.Users;
-import com.ruhuna.project.supermarketcore.service.dto.UserDTO;
+import com.ruhuna.project.supermarketcore.controller.dto.UserDTO;
 
 /**
  * Created By Supun Kavinda
