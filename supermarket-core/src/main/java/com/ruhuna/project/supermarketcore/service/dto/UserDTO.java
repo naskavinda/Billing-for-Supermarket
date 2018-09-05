@@ -1,7 +1,6 @@
-package com.ruhuna.project.supermarketcore.service.requestmodel;
+package com.ruhuna.project.supermarketcore.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +14,7 @@ import static com.fasterxml.jackson.annotation.JsonProperty.Access;
 //@Builder
 @Getter
 @Setter
-public class UserModel {
+public class UserDTO {
     private int id;
 
     private String firstName;

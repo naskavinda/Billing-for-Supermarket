@@ -1,4 +1,4 @@
-package com.ruhuna.project.supermarketcore.manager.model;
+package com.ruhuna.project.supermarketcore.entity;
 
 import lombok.Getter;
 import lombok.Setter;

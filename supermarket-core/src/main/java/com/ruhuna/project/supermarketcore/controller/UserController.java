@@ -1,7 +1,7 @@
 package com.ruhuna.project.supermarketcore.controller;
 
 import com.ruhuna.project.supermarketcore.service.UserService;
-import com.ruhuna.project.supermarketcore.service.requestmodel.UserModel;
+import com.ruhuna.project.supermarketcore.service.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import io.swagger.annotations.Api;
@@ -32,32 +32,32 @@ public class UserController {
     }
 
     @GetMapping(value = "user/all")
-    @ApiOperation(value = "Find All User")
-    public ResponseEntity<List<UserModel>> getAllUsers(){
-        List<UserModel> userModels = userService.getAllUsers();
-        if ( userModels.isEmpty() ) {
+    @ApiOperation(value = "Find All User", response = UserDTO.class, responseContainer = "List")
+    public ResponseEntity<List<UserDTO>> getAllUsers(){
+        List<UserDTO> userDTOS = userService.getAllUsers();
+        if ( userDTOS.isEmpty() ) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(userModels, HttpStatus.OK);
+        return new ResponseEntity<>(userDTOS, HttpStatus.OK);
     }
 
     @GetMapping( value = "user/")
-    @ApiOperation( value = "Find given user", response = UserModel.class, responseContainer = "List" )
-    public ResponseEntity<UserModel> getUserById(@RequestParam int id) {
+    @ApiOperation( value = "Find given user", response = UserDTO.class, responseContainer = "List" )
+    public ResponseEntity<UserDTO> getUserById(@RequestParam int id) {
         if ( id <= 0 ) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        UserModel userModel = userService.getUserById(id);
-        if ( userModel == null ) {
+        UserDTO userDTO = userService.getUserById(id);
+        if ( userDTO == null ) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(userModel, HttpStatus.OK);
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
 
     @PostMapping( value = "user/" )
-    @ApiOperation( value = "Save User details", response = UserModel.class )
-    public ResponseEntity<UserModel> saveUser(@RequestBody UserModel userModel, @RequestParam String password) {
-        UserModel userModelResponse = userService.saveOrUpdateUser(userModel, password);
-        return new ResponseEntity<>(userModelResponse, HttpStatus.CREATED);
+    @ApiOperation( value = "Save User details", response = UserDTO.class )
+    public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO userDTO) {
+        UserDTO userDTOResponse = userService.saveOrUpdateUser(userDTO);
+        return new ResponseEntity<>(userDTOResponse, HttpStatus.CREATED);
     }
 }

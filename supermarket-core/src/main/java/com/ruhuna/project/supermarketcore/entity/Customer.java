@@ -1,4 +1,4 @@
-package com.ruhuna.project.supermarketcore.manager.model;
+package com.ruhuna.project.supermarketcore.entity;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;

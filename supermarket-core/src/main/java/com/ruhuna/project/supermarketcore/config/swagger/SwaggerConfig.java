@@ -34,7 +34,8 @@ public class SwaggerConfig {
 
     private Predicate<String> postPaths() {
         //return or(regex("/.*"));
-        return or(regex("/user.*"));
+        return or(regex("/user.*"),
+                regex("/item.*"));
     }
 
     private ApiInfo apiInfo() {
@@ -49,7 +50,7 @@ public class SwaggerConfig {
                 .build();
     }
 
-    public Contact contact() {
+    private Contact contact() {
         return new Contact(" Supun Kavinda", "", "naskavinda@gmail.com");
     }
 

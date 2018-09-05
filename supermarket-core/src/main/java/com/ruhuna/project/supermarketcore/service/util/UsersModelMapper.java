@@ -1,7 +1,7 @@
 package com.ruhuna.project.supermarketcore.service.util;
 
-import com.ruhuna.project.supermarketcore.manager.model.Users;
-import com.ruhuna.project.supermarketcore.service.requestmodel.UserModel;
+import com.ruhuna.project.supermarketcore.entity.Users;
+import com.ruhuna.project.supermarketcore.service.dto.UserDTO;
 
 /**
  * Created By Supun Kavinda
@@ -14,28 +14,21 @@ public final class UsersModelMapper {
 
     }
 
-    public static UserModel userToUserModel(Users users) {
-//        return UserModel.builder()
-//                .id(users.getId())
-//                .firstName(users.getFirstName())
-//                .lastName(users.getLastName())
-//                .userName(users.getUserName())
-//                .status(users.getStatus())
-//                .build();
-        UserModel userModel = new UserModel();
-        userModel.setFirstName(users.getFirstName());
-        userModel.setLastName(users.getLastName());
-        userModel.setId(users.getId());
-        userModel.setUserName(users.getUserName());
-        return userModel;
+    public static UserDTO userToUserDTO(Users users) {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setFirstName(users.getFirstName());
+        userDTO.setLastName(users.getLastName());
+        userDTO.setId(users.getId());
+        userDTO.setUserName(users.getUserName());
+        return userDTO;
     }
 
-    public static Users userModelToUser(UserModel userModel, String password) {
+    public static Users userDTOToUser(UserDTO userDTO) {
         Users users = new Users();
-        users.setFirstName(userModel.getFirstName());
-        users.setLastName(userModel.getLastName());
-        users.setUserName(userModel.getUserName());
-        users.setPassword(password);
+        users.setFirstName(userDTO.getFirstName());
+        users.setLastName(userDTO.getLastName());
+        users.setUserName(userDTO.getUserName());
+        users.setPassword(userDTO.getPassword());
         return users;
     }
 }
