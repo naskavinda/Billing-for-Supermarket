@@ -42,10 +42,10 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("SuperMarket rest API")
                 .description("Spring boot rest api for supermarket")
-//                .termsOfServiceUrl("http://beepatterns.lk")
+//                .termsOfServiceUrl("")
                 .contact(contact())
-                //.license("beepatterns License")
-                //.licenseUrl("naskavinda@gmail.com")
+                //.license("")
+                //.licenseUrl("")
                 .version("1.0.0")
                 .build();
     }

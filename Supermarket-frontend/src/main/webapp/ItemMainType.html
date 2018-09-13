@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="supermarket/function/itemMainType.js"></script>
+    <title>Item Main Type</title>
+</head>
+<body onload="loadItemMainType()">
+<label>All Bank</label>
+<select onchange="loadItemMainTypeById(this)" id="allItemMainType"></select><br/>
+<label>Item Main Type * </label><input type="text" id="mainType" placeholder="Bank Name"/><br/>
+<button id="btnSaveItemMainType" onclick="saveOrUpdateBank(13)">Save</button>
+</body>
+</html>
