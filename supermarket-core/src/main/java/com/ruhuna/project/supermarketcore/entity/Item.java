@@ -19,9 +19,10 @@ import java.util.Date;
 public class Item implements Serializable {
 
     @Id
-    @SequenceGenerator(name = "item_id_seq", sequenceName = "item_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "item_id_seq")
-    private int id;
+//    @SequenceGenerator(name = "item_id_seq", sequenceName = "item_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)//, generator = "item_id_seq")
+    @Column(name = "item_id")
+    private int itemId;
 
     @NotNull
     @ApiModelProperty(notes = "Item Name", required = true)
@@ -53,20 +54,20 @@ public class Item implements Serializable {
     private Boolean status;
 
 //    @ElementCollection(targetClass = Pack.class)
-//    @JoinTable(name = "tblShopTypes", joinColumns = @JoinColumn(name = "id"))
+//    @JoinTable(name = "tblShopTypes", joinColumns = @JoinColumn(name = "userId"))
 //    @Column(name = "pack", nullable = false)
     @Enumerated(EnumType.STRING)
     private Pack pack;
 
 //    @ElementCollection(targetClass = Unit.class)
-//    @JoinTable(name = "tblShopTypes", joinColumns = @JoinColumn(name = "id"))
+//    @JoinTable(name = "tblShopTypes", joinColumns = @JoinColumn(name = "userId"))
 //    @Column(name = "pack", nullable = false)
     @Enumerated(EnumType.STRING)
     private Unit unit;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "item_sub_type_id", referencedColumnName = "item_sub_type_id", nullable = false)
     private ItemSubType itemSubType;
 
 }

@@ -17,8 +17,8 @@ import java.math.BigDecimal;
 @Table(name = "bill_has_item")
 public class BillHasItem {
     @Id
-    @SequenceGenerator(name = "bill_has_item_id_seq", sequenceName = "bill_has_item_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "bill_has_item_id_seq")
+//    @SequenceGenerator(name = "bill_has_item_id_seq", sequenceName = "bill_has_item_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)//, generator = "bill_has_item_id_seq")
     private int id;
 
     @Column(name = "qty")
@@ -40,11 +40,11 @@ public class BillHasItem {
     private boolean status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "bill_id", referencedColumnName = "bill_id", nullable = false)
     private Bill bill;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "item_id", referencedColumnName = "item_id", nullable = false)
     private Item item;
 
 }

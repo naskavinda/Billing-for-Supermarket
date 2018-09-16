@@ -1,4 +1,4 @@
-function loadItemMainType() {
+function loadItemMainType(id) {
     $.ajax({
             url: 'LoadItemMainType',
             type: 'post',
@@ -6,10 +6,10 @@ function loadItemMainType() {
             cache: false,
             async: false,
             success: function (data) {
-                $("#allItemMainType").empty();
-                $('#allItemMainType').append('<option value="0">Select</option>');
+                $("#"+id).empty();
+                $('#'+id).append('<option value="0">Select</option>');
                 $.each(data, function (index, element) {
-                    $('#allItemMainType').append('<option value="' + element.id + '">' + element.type + '</option>');
+                    $('#'+id).append('<option value="' + element.id + '">' + element.type + '</option>');
                 });
             },
             error: function () {
@@ -33,7 +33,7 @@ function loadItemMainTypeById(ref) {
         //     cache: false,
         //     async: false,
         //     data: {
-        //         id: valueOfItemMainTypeComboBox
+        //         userId: valueOfItemMainTypeComboBox
         //     },
         //     success: function (data) {
         //         var x = JSON.parse(data);

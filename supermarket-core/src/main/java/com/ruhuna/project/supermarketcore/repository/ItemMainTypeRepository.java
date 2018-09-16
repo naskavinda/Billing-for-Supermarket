@@ -4,6 +4,8 @@ import com.ruhuna.project.supermarketcore.entity.ItemMainType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 /**
  * Created By Supun Kavinda
  * Email naskavinda@gmail.com
@@ -11,4 +13,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ItemMainTypeRepository extends JpaRepository<ItemMainType,Integer> {
+    Optional<ItemMainType> findByItemMainTypeId(int id);
 }

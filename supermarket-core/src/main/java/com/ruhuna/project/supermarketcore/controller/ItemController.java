@@ -75,6 +75,12 @@ public class ItemController {
         return  new ResponseEntity<>(itemService.getItemSubTypeById(id), HttpStatus.OK);
     }
 
+    @GetMapping(value = "item_sub_types/{id}")
+    @ApiOperation(value = "Get Item Sub Type By Item Main Type ID", response = ItemSubTypeDTO.class, responseContainer = "List")
+    public ResponseEntity<List<ItemSubTypeDTO>> getItemSubTypeByItemMainTypeId(@PathVariable int id) {
+        return  new ResponseEntity<>(itemService.getItemSubTypeByItemMainTypeId(id), HttpStatus.OK);
+    }
+
     @PostMapping(value = "item_sub_type/")
     @ApiOperation(value = "Save Item Sub Type details", response = ItemSubTypeDTO.class)
     public ResponseEntity<ItemSubTypeDTO> saveItemSubType(@RequestBody ItemSubTypeDTO itemSubTypeDTO) {

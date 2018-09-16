@@ -76,4 +76,18 @@ public class CrudOperator {
             e.printStackTrace();
         }
     }
+
+    public static <T> ClientResponse loadResponse(Class<T> className, String url) {
+        ClientConfig clientConfig = new DefaultClientConfig();
+        clientConfig.getClasses().add(className);
+//        clientConfig.getClasses().add(JacksonJsonProvider.class);
+
+        Client client = Client.create(clientConfig);
+
+        ClientResponse clientResponse = client.resource(BaseUrl.BASE_URL + url).accept(MediaType.APPLICATION_JSON)
+                .header("content-type", MediaType.APPLICATION_JSON).get(ClientResponse.class);
+        System.out.println(clientResponse.getStatus());
+        checkStatus(clientResponse);
+        return clientResponse;
+    }
 }

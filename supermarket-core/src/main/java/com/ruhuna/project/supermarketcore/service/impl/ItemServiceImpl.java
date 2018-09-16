@@ -52,7 +52,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ItemMainType getItemMainTypeById(int id) {
-        Optional<ItemMainType> itemMainType = itemMainTypeRepository.findById(id);
+        Optional<ItemMainType> itemMainType = itemMainTypeRepository.findByItemMainTypeId(id);
         if (!itemMainType.isPresent())
             throw new InvalidPropertyException("provided Item Main Type ID is not exist.");
         return itemMainType.get();
@@ -71,7 +71,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ItemSubType getItemSubTypeById(int id) {
-        Optional<ItemSubType> itemSubType = itemSubTypeRepository.findById(id);
+        Optional<ItemSubType> itemSubType = itemSubTypeRepository.findByItemSubTypeId(id);
         if (!itemSubType.isPresent())
             throw new InvalidPropertyException("provided Item Sub Type ID is not exist.");
         return itemSubType.get();
@@ -97,7 +97,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     private Item findItemById(int id) {
-        Optional<Item> item = itemRepository.findById(id);
+        Optional<Item> item = itemRepository.findByItemId(id);
         if (!item.isPresent())
             throw new InvalidPropertyException("provided Item ID is not exist.");
         return item.get();
@@ -113,7 +113,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public CartDTO getItemInCartById(int id) {
-        Optional<Cart> cart = cartRepository.findById(id);
+        Optional<Cart> cart = cartRepository.findByCartId(id);
         if (!cart.isPresent())
             throw new InvalidPropertyException("provided Item ID is not exist.");
         return ItemModelMapper.cartToCartDTO(cart.get());
@@ -129,5 +129,11 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public List<CartDTO> getAllItemsInCart() {
         return cartRepository.findCartsByStatusIsTrue().stream().map(ItemModelMapper::cartToCartDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ItemSubTypeDTO> getItemSubTypeByItemMainTypeId(int itemMainTypeId) {
+        List<ItemSubType> itemSubTypes = itemSubTypeRepository.findItemSubTypesByItemMainType_ItemMainTypeId(itemMainTypeId);
+        return itemSubTypes.stream().map(ItemModelMapper::itemSubTypeToItemSubTypeDTO).collect(Collectors.toList());
     }
 }

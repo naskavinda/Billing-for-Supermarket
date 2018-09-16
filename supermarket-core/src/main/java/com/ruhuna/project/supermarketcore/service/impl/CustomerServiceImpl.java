@@ -30,7 +30,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer getCustomerById(int id) {
-        Optional<Customer> customer = customerRepository.findById(id);
+        Optional<Customer> customer = customerRepository.findByCustomerId(id);
         if (!customer.isPresent())
             throw new InvalidPropertyException("provided Customer ID is not exist.");
         return customer.get();

@@ -18,9 +18,10 @@ import javax.validation.constraints.NotNull;
 public class PaymentType {
 
     @Id
-    @SequenceGenerator(name = "payment_type_id_seq", sequenceName = "payment_type_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "payment_type_id_seq")
-    private int id;
+//    @SequenceGenerator(name = "payment_type_id_seq", sequenceName = "payment_type_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)//, generator = "payment_type_id_seq")
+    @Column(name = "payment_type_id")
+    private int paymentTypeId;
 
     @NotNull
     private String type;

@@ -16,7 +16,7 @@ public final class CustomerModelMapper {
     public static Customer customerDTOToCustomer(CustomerDTO customerDTO,boolean status) {
         Customer customer = new Customer();
         customer.setFirstName(customerDTO.getFirstName());
-        customer.setId(customerDTO.getId());
+        customer.setCustomerId(customerDTO.getId());
         customer.setLastName(customerDTO.getLastName());
         customer.setStatus(status);
         customer.setTp(customerDTO.getTp());
@@ -27,7 +27,7 @@ public final class CustomerModelMapper {
     public static CustomerDTO customerToCustomerDTO(Customer customer) {
         CustomerDTO customerDTO = new CustomerDTO();
         customerDTO.setFirstName(customer.getFirstName());
-        customerDTO.setId(customer.getId());
+        customerDTO.setId(customer.getCustomerId());
         customerDTO.setLastName(customer.getLastName());
         customerDTO.setTp(customer.getTp());
         return customerDTO;

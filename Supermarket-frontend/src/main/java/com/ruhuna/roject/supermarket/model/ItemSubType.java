@@ -9,13 +9,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * Created By Supun Kavinda
  * Email naskavinda@gmail.com
- * Date  : 9/9/2018
+ * Date  : 9/13/2018
  */
-@XmlRootElement(name = "itemMainType")
+@XmlRootElement(name = "itemSubType")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ItemMainType {
+public class ItemSubType {
     private int id;
     private String type;
+    private int itemMainTypeId;
 
     public int getId() {
         return id;
@@ -33,10 +34,19 @@ public class ItemMainType {
         this.type = type;
     }
 
+    public int getItemMainTypeId() {
+        return itemMainTypeId;
+    }
+
+    public void setItemMainTypeId(int itemMainTypeId) {
+        this.itemMainTypeId = itemMainTypeId;
+    }
+
     @Override
     public String toString() {
         JSONObject jSONObject = new JSONObject();
         jSONObject.put("userId", id);
+        jSONObject.put("itemMainTypeId", itemMainTypeId);
         jSONObject.put("type", type);
         return jSONObject.toJSONString();
     }

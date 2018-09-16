@@ -15,9 +15,10 @@ import javax.validation.constraints.NotNull;
 @Table(name = "users")
 public class Users {
     @Id
-    @SequenceGenerator(name = "users_id_seq", sequenceName = "users_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "users_id_seq")
-    private int id;
+//    @SequenceGenerator(name = "users_id_seq", sequenceName = "users_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)//, generator = "users_id_seq")
+    @Column(name = "user_id")
+    private int userId;
 
     @NotNull
     private String firstName;

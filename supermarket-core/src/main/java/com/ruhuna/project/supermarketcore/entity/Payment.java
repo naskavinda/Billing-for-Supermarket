@@ -17,9 +17,10 @@ import java.math.BigDecimal;
 @Table(name = "payment")
 public class Payment {
     @Id
-    @SequenceGenerator(name = "payment_id_seq", sequenceName = "payment_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "payment_id_seq")
-    private int id;
+//    @SequenceGenerator(name = "payment_id_seq", sequenceName = "payment_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)//, generator = "payment_id_seq")
+    @Column(name = "payment_id")
+    private int paymentId;
 
     private BigDecimal paidAmount;
 
@@ -36,6 +37,6 @@ public class Payment {
     private boolean status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "bill_id", referencedColumnName = "bill_id", nullable = false)
     private Bill bill;
 }

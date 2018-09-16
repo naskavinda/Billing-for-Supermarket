@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO getUserById(int id) {
-        Users user = usersRepository.findUsersById(id);
+        Users user = usersRepository.findUsersByUserId(id);
         return user == null ? null : UsersModelMapper.userToUserDTO(user);
     }
 

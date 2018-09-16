@@ -37,4 +37,6 @@ public interface ItemService {
     CartDTO addToCart(CartDTO cartDTO);
 
     List<CartDTO> getAllItemsInCart();
+
+    List<ItemSubTypeDTO> getItemSubTypeByItemMainTypeId(int itemMainTypeId);
 }

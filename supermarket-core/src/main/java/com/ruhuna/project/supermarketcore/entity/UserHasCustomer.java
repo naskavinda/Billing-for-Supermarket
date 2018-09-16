@@ -16,16 +16,16 @@ import javax.persistence.*;
 @Table(name = "user_has_customer")
 public class UserHasCustomer {
     @Id
-    @SequenceGenerator(name = "user_has_customer_id_seq", sequenceName = "user_has_customer_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "user_has_customer_id_seq")
+//    @SequenceGenerator(name = "user_has_customer_id_seq", sequenceName = "user_has_customer_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)//, generator = "user_has_customer_id_seq")
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
     private Users users;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id", nullable = false)
     private Customer customer;
 
     private boolean status;

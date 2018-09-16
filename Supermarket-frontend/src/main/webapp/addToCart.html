@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="supermarket/function/itemMainType.js"></script>
+    <script type="text/javascript" src="supermarket/function/itemSubType.js"></script>
+    <script type="text/javascript" src="supermarket/function/itemType.js"></script>
     <title>Add Item To the Cart</title>
 </head>
-<body>
-<select onchange="loadItemMainTypeById(this)" id="selectItemMainType"></select><br/>
-<select onchange="loadItemSubTypeById(this)" id="selectItemSubType"></select><br/>
+<body onload="loadItemMainType('selectItemMainType')">
+<select onchange="loadItemSubType('selectItemSubType',this.value)" id="selectItemMainType"></select><br/>
+<select onchange="loadItems('selectItemMainType','selectItemSubType','selectItemType')" id="selectItemSubType"></select><br/>
 <select onchange="addItemToCart(this)" id="selectItemType"></select><br/>
 <label>Item Main Type * </label><input type="text" id="mainType" placeholder="Bank Name"/><br/>
 </body>

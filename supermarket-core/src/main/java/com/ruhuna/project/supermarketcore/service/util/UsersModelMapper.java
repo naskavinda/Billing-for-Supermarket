@@ -18,7 +18,7 @@ public final class UsersModelMapper {
         UserDTO userDTO = new UserDTO();
         userDTO.setFirstName(users.getFirstName());
         userDTO.setLastName(users.getLastName());
-        userDTO.setId(users.getId());
+        userDTO.setId(users.getUserId());
         userDTO.setUserName(users.getUserName());
         return userDTO;
     }

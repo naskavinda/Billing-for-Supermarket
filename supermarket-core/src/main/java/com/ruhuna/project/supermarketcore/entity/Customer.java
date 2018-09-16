@@ -13,9 +13,10 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class Customer {
     @Id
-    @SequenceGenerator(name = "customer_id_seq", sequenceName = "customer_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "customer_id_seq")
-    private int id;
+//    @SequenceGenerator(name = "customer_id_seq", sequenceName = "customer_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)//, generator = "customer_id_seq")
+    @Column(name = "customer_id")
+    private int customerId;
 
     @NotNull(message = "First Name Can't be Null")
     @ApiModelProperty(notes = "First Name", required = true)

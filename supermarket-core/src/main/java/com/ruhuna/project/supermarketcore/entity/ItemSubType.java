@@ -15,9 +15,10 @@ import java.io.Serializable;
 @Table(name = "item_sub_type")
 public class ItemSubType implements Serializable {
     @Id
-    @SequenceGenerator(name = "item_sub_type_id_seq", sequenceName = "item_sub_type_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "item_sub_type_id_seq")
-    private int id;
+//    @SequenceGenerator(name = "item_sub_type_id_seq", sequenceName = "item_sub_type_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)//, generator = "item_sub_type_id_seq")
+    @Column(name = "item_sub_type_id")
+    private int itemSubTypeId;
 
     @NotNull(message = "Type Can't be null")
     @ApiModelProperty(notes = "Type", required = true)
@@ -29,7 +30,7 @@ public class ItemSubType implements Serializable {
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "item_main_type_id", referencedColumnName = "item_main_type_id", nullable = false)
     private ItemMainType itemMainType;
 
 }
